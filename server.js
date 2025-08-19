@@ -50,7 +50,7 @@ const authMiddleware = async (req, res, next) => {
 
 // Yönlendirme ve statik dosya sunumu
 app.get('/', (req, res) => {
-    res.redirect('/ui/login.html');
+    res.redirect('/login.html');
 });
 
 // ui klasöründeki dosyaları statik olarak sunar
