@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatCPT CLI 1.0</title>
+    <meta name="robots" content="noindex, nofollow">
+    <script>
+        const session = localStorage.getItem('supabaseSession');
+        if (!session) {
+            window.location.href = 'login.html'; 
+        }
+    </script>
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="icon.png" alt="ChatCPT Logo">
+        ChatCPT - CPT 2.0 😏
+        <nav class="header-menu">
+            <a href="profile.html">Profil</a>
+            <a href="settings.html">Ayarlar</a>
+            <button id="logoutBtn">Çıkış Yap</button>
+        </nav>
+    </header>
+    <div id="chat"></div>
+    <footer>
+        <input type="text" id="userInput" placeholder="Mesajınızı yazın...">
+        <button id="sendBtn" class="btn-send">Gönder</button>
+    </footer>
+    <div class="copyright">
+        © 2025 - All rights reserved by CRTY Apps
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
