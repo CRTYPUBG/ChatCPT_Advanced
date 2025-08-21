@@ -1,0 +1,82 @@
+name: Deploy ChatCPT
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy-api:
+    name: Deploy API to Vercel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+        
+      - name: Deploy to Vercel
+        run: |
+          cd api
+          vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --yes
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+  deploy-web:
+    name: Deploy Web to Netlify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install Netlify CLI
+        run: npm install --global netlify-cli
+        
+      - name: Deploy to Netlify
+        run: |
+          netlify deploy --prod --dir=web --site=${{ secrets.NETLIFY_SITE_ID }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+  build-desktop:
+    name: Build Desktop App
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install Python dependencies
+        run: |
+          pip install -r requirements.txt
+          
+      - name: Install Node dependencies
+        run: npm install
+        
+      - name: Build Desktop App
+        run: python build_exe.py
+        
+      - name: Upload Desktop App
+        uses: actions/upload-artifact@v3
+        with:
+          name: ChatCPT-Desktop-Windows
+          path: ChatCPT_Desktop.exe
