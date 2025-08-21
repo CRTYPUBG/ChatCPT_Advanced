@@ -2,9 +2,15 @@
   "version": 2,
   "functions": {
     "api/*.js": {
-      "runtime": "@vercel/node@18.x"
+      "runtime": "@vercel/node@20.x"
     }
   },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
