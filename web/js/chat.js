@@ -189,7 +189,7 @@ class ChatApp {
         // Production API URL
         const BACKEND_URL = window.location.hostname === 'localhost' 
             ? 'http://localhost:3000' 
-            : 'https://chatcpt-advanced-api.vercel.app';
+            : 'https://chat-cpt-advanced-9cpt.vercel.app';
         
         try {
             // Önce session kontrolü yap
