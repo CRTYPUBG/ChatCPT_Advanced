@@ -91,7 +91,7 @@ class ChatApp {
     
     async checkServerStatus() {
         try {
-            const response = await fetch('http://localhost:3000/api/health', {
+            const response = await fetch(`${BACKEND_URL}/api/health.php`, {
                 method: 'GET',
                 timeout: 5000
             });
@@ -188,8 +188,8 @@ class ChatApp {
     async callChatAPI(message) {
         // Production API URL
         const BACKEND_URL = window.location.hostname === 'localhost' 
-            ? 'http://localhost:3000' 
-            : 'https://chat-cpt-advanced-9cpt.vercel.app';
+            ? 'http://localhost/api' 
+            : 'https://chat-cpt-advanced-9cpt.vercel.app/api';
         
         try {
             // Önce session kontrolü yap
@@ -204,7 +204,7 @@ class ChatApp {
             const token = session.access_token;
             
             // Gerçek API çağrısı
-            const response = await fetch(`${BACKEND_URL}/api/chat`, {
+            const response = await fetch(`${BACKEND_URL}/api/chat.php`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

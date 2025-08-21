@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // API URL
     const BACKEND_URL = window.location.hostname === 'localhost' 
-        ? 'http://localhost:3000' 
-        : 'https://chat-cpt-advanced-9cpt.vercel.app';
+        ? 'http://localhost/api' 
+        : 'https://chat-cpt-advanced-9cpt.vercel.app/api';
     
     // Event listeners
     loginBtn.addEventListener('click', handleLogin);
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         try {
             // API call
-            const response = await fetch(`${BACKEND_URL}/api/auth`, {
+            const response = await fetch(`${BACKEND_URL}/api/auth.php`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
