@@ -12,7 +12,7 @@ try {
     $headers = getallheaders();
     $authHeader = $headers['Authorization'] ?? $headers['authorization'] ?? '';
     
-    if (!$authHeader || !str_starts_with($authHeader, 'Bearer ')) {
+    if (!$authHeader || strpos($authHeader, 'Bearer ') !== 0) {
         sendError('Missing or invalid authorization header', 401);
     }
     

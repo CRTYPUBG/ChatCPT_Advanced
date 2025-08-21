@@ -91,7 +91,7 @@ class ChatApp {
     
     async checkServerStatus() {
         try {
-            const response = await fetch(`${BACKEND_URL}/api/health.php`, {
+            const response = await fetch(`${BACKEND_URL}/health.php`, {
                 method: 'GET',
                 timeout: 5000
             });
@@ -204,7 +204,7 @@ class ChatApp {
             const token = session.access_token;
             
             // Gerçek API çağrısı
-            const response = await fetch(`${BACKEND_URL}/api/chat.php`, {
+            const response = await fetch(`${BACKEND_URL}/chat.php`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         try {
             // API call
-            const response = await fetch(`${BACKEND_URL}/api/auth.php`, {
+            const response = await fetch(`${BACKEND_URL}/auth.php`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
