@@ -1,6 +1,24 @@
 // ChatCPT Web - Main JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    // 🚫 Developer Tools Koruması
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "F12" || 
+            (e.ctrlKey && e.shiftKey && e.key === "I") || 
+            (e.ctrlKey && e.shiftKey && e.key === "C") ||
+            (e.ctrlKey && e.shiftKey && e.key === "J") ||
+            (e.ctrlKey && e.key === "u")) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // Console uyarısı
+    console.clear();
+    console.log("%cDUR!", "color: red; font-size: 50px; font-weight: bold;");
+    console.log("%cBu bir tarayıcı özelliğidir ve geliştiriciler için tasarlanmıştır.", "color: red; font-size: 16px;");
+    
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
     

@@ -2,12 +2,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const BACKEND_URL = 'http://localhost:3000';
     const path = window.location.pathname;
 
+    // Sağ tık ve F12 koruması
     document.addEventListener('contextmenu', event => event.preventDefault());
-    document.onkeydown = (e) => {
-        if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") || (e.ctrlKey && e.shiftKey && e.key === "C")) {
+    document.addEventListener('keydown', (e) => {
+        // F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U engellensin
+        if (e.key === "F12" || 
+            (e.ctrlKey && e.shiftKey && e.key === "I") || 
+            (e.ctrlKey && e.shiftKey && e.key === "C") ||
+            (e.ctrlKey && e.shiftKey && e.key === "J") ||
+            (e.ctrlKey && e.key === "u")) {
             e.preventDefault();
+            return false;
         }
-    };
+    });
+    
+    // Console'a uyarı mesajı
+    console.clear();
+    console.log("%cDUR!", "color: red; font-size: 50px; font-weight: bold;");
+    console.log("%cBu bir tarayıcı özelliğidir ve geliştiriciler için tasarlanmıştır.", "color: red; font-size: 16px;");
+    console.log("%cBirisi size buraya kod kopyalayıp yapıştırmanızı söylediyse, bu bir dolandırıcılık girişimidir.", "color: red; font-size: 16px;");
     
     if (path.includes('login.html')) {
         setupLoginPage();
